@@ -1,0 +1,31 @@
+{
+  "project_meta": {
+    "corpus": "hy_clean.txt",
+    "tokens_processed": "~34M tokens",
+    "sequence_length": 512,
+    "effective_batch_size": 32
+  },
+  "benchmarks": {
+    "heuristic_init": {
+      "pre_ft_ppl": 24484.3,
+      "post_ft_ppl": 8.33,
+      "train_loss": 2.5141,
+      "eval_loss": 2.1198,
+      "runtime_min": 277.0
+    },
+    "mean_init": {
+      "pre_ft_ppl": 216406.1,
+      "post_ft_ppl": 10.09,
+      "train_loss": 2.772,
+      "eval_loss": 2.3117,
+      "runtime_min": 28.5
+    },
+    "nearest_init": {
+      "pre_ft_ppl": 96967.5,
+      "post_ft_ppl": 8.958966264799521,
+      "train_loss": 2.62112556378866,
+      "eval_loss": 2.192654848098755,
+      "runtime_min": 50.61268634398778
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "base_model": "Qwen/Qwen2.5-0.5B",
+  "armenian_sp_model": "/content/hy_bpe_32k.model",
+  "vocabulary": {
+    "original_vocab_size": 151665,
+    "new_tokens_added": 30766,
+    "extended_vocab_size": 182431,
+    "armenian_token_count": 29641,
+    "tokens_already_in_qwen": 973,
+    "byte_tokens_skipped": 256
+  },
+  "fertility": {
+    "original_qwen": 7.8094,
+    "armenian_sp_bpe32k": 1.6942,
+    "reduction_pct": 78.31,
+    "speedup_factor": 4.61,
+    "lines_evaluated": 2000
+  },
+  "embedding_norms": {
+    "old_tokens_mean": 0.4636,
+    "old_tokens_std": 0.0611,
+    "mean_init_mean": 0.3494,
+    "heuristic_init_mean": 0.2309,
+    "nearest_init_mean": 0.4016
+  },
+  "perplexity_pre_finetuning": {
+    "A: Mean-init": {
+      "perplexity": 216406.1,
+      "tokens_evaluated": 10995
+    },
+    "B: Heuristic-init": {
+      "perplexity": 24484.3,
+      "tokens_evaluated": 10995
+    },
+    "C: Nearest-init": {
+      "perplexity": 96967.5,
+      "tokens_evaluated": 10995
+    }
+  },
+  "best_init_strategy_by_perplexity": "B: Heuristic-init",
+  "saved_models": {
+    "mean_init": "/content/goal3_output/mean_init",
+    "heuristic_init": "/content/goal3_output/heuristic_init",
+    "nearest_init": "/content/goal3_output/nearest_init",
+    "extended_tokenizer": "/content/goal3_output/extended_tokenizer"
+  },
+  "nearest_init_sample_mappings": [
+    {
+      "armenian_token": "ու",
+      "nearest_qwen_token": "ÖĤ"
+    },
+    {
+      "armenian_token": "ան",
+      "nearest_qwen_token": "Õ¶"
+    },
+    {
+      "armenian_token": "ար",
+      "nearest_qwen_token": "ÖĢ"
+    },
+    {
+      "armenian_token": "եր",
+      "nearest_qwen_token": "ÖĢ"
+    },
+    {
+      "armenian_token": "ակ",
+      "nearest_qwen_token": "Õ¯"
+    },
+    {
+      "armenian_token": "այ",
+      "nearest_qwen_token": "Õµ"
+    },
+    {
+      "armenian_token": "▁հ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ին",
+      "nearest_qwen_token": "Õ¶"
+    },
+    {
+      "armenian_token": "որ",
+      "nearest_qwen_token": "ÖĢ"
+    },
+    {
+      "armenian_token": "ում",
+      "nearest_qwen_token": "Õ´"
+    },
+    {
+      "armenian_token": "ել",
+      "nearest_qwen_token": "Õ¬"
+    },
+    {
+      "armenian_token": "▁է",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ներ",
+      "nearest_qwen_token": "ÖĢ"
+    },
+    {
+      "armenian_token": "ութ",
+      "nearest_qwen_token": "Õ©"
+    },
+    {
+      "armenian_token": "▁մ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ությ",
+      "nearest_qwen_token": "Õµ"
+    },
+    {
+      "armenian_token": "▁ե",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ամ",
+      "nearest_qwen_token": "Õ´"
+    },
+    {
+      "armenian_token": "▁կ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ուն",
+      "nearest_qwen_token": "Õ¶"
+    },
+    {
+      "armenian_token": "ատ",
+      "nearest_qwen_token": "Õ¿"
+    },
+    {
+      "armenian_token": "աս",
+      "nearest_qwen_token": "Õ½"
+    },
+    {
+      "armenian_token": "ական",
+      "nearest_qwen_token": "Õ¡"
+    },
+    {
+      "armenian_token": "ավ",
+      "nearest_qwen_token": "Õ¾"
+    },
+    {
+      "armenian_token": "են",
+      "nearest_qwen_token": "Õ¶"
+    },
+    {
+      "armenian_token": "▁ն",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "աց",
+      "nearest_qwen_token": "Öģ"
+    },
+    {
+      "armenian_token": "ություն",
+      "nearest_qwen_token": "ÖĤ"
+    },
+    {
+      "armenian_token": "ով",
+      "nearest_qwen_token": "Õ¾"
+    },
+    {
+      "armenian_token": "ետ",
+      "nearest_qwen_token": "Õ¿"
+    },
+    {
+      "armenian_token": "▁ա",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ող",
+      "nearest_qwen_token": "Õ²"
+    },
+    {
+      "armenian_token": "▁տ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁Ա",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁պ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ած",
+      "nearest_qwen_token": "Õ®"
+    },
+    {
+      "armenian_token": "▁Հ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁գ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁դ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "իր",
+      "nearest_qwen_token": "ÖĢ"
+    },
+    {
+      "armenian_token": "▁որ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁բ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "▁եւ",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ագ",
+      "nearest_qwen_token": "Õ£"
+    },
+    {
+      "armenian_token": "ության",
+      "nearest_qwen_token": "Õ¡"
+    },
+    {
+      "armenian_token": "ների",
+      "nearest_qwen_token": "Õ«"
+    },
+    {
+      "armenian_token": "ահ",
+      "nearest_qwen_token": "Õ°"
+    },
+    {
+      "armenian_token": "ալ",
+      "nearest_qwen_token": "Õ¬"
+    },
+    {
+      "armenian_token": "▁ս",
+      "nearest_qwen_token": "Ġ"
+    },
+    {
+      "armenian_token": "ես",
+      "nearest_qwen_token": "Õ½"
+    }
+  ]
+}

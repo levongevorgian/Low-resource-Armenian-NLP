@@ -3,7 +3,7 @@
   "alpha_pattern": {},
   "arrow_config": null,
   "auto_mapping": null,
-  "base_model_name_or_path": "/workspace/project/Goal 3 output/nearest_init",
+  "base_model_name_or_path": "models/grafted_tokenizers/nearest_init",
   "bias": "none",
   "corda_config": null,
   "ensure_weight_tying": false,

@@ -1,0 +1,179 @@
+{
+  "eval_corpus": "hy_sample_raw.txt",
+  "results": [
+    {
+      "name": "unigram_8k",
+      "total_tokens": 1066604,
+      "total_words": 517236,
+      "fertility": 2.062,
+      "bytes_per_token": 7.056,
+      "strr": 0.5377,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 6.05,
+      "unk_rate": 0.0,
+      "compression_ratio": 7.06
+    },
+    {
+      "name": "unigram_16k",
+      "total_tokens": 947225,
+      "total_words": 517236,
+      "fertility": 1.831,
+      "bytes_per_token": 7.945,
+      "strr": 0.6199,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 3.88,
+      "unk_rate": 0.0,
+      "compression_ratio": 7.95
+    },
+    {
+      "name": "unigram_32k",
+      "total_tokens": 867615,
+      "total_words": 517236,
+      "fertility": 1.677,
+      "bytes_per_token": 8.674,
+      "strr": 0.6817,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 2.69,
+      "unk_rate": 0.0,
+      "compression_ratio": 8.67
+    },
+    {
+      "name": "bpe_8k",
+      "total_tokens": 1062694,
+      "total_words": 517236,
+      "fertility": 2.055,
+      "bytes_per_token": 7.082,
+      "strr": 0.5176,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 5.2,
+      "unk_rate": 0.0,
+      "compression_ratio": 7.08
+    },
+    {
+      "name": "bpe_16k",
+      "total_tokens": 944225,
+      "total_words": 517236,
+      "fertility": 1.826,
+      "bytes_per_token": 7.971,
+      "strr": 0.6114,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 3.47,
+      "unk_rate": 0.0,
+      "compression_ratio": 7.97
+    },
+    {
+      "name": "bpe_32k",
+      "total_tokens": 862747,
+      "total_words": 517236,
+      "fertility": 1.668,
+      "bytes_per_token": 8.723,
+      "strr": 0.683,
+      "median_fertility": 1.0,
+      "severe_frag_pct": 2.52,
+      "unk_rate": 0.0,
+      "compression_ratio": 8.72
+    }
+  ],
+  "vocab_composition": [
+    {
+      "name": "unigram_8k",
+      "total": 8000,
+      "armenian": 7230,
+      "armenian_pct": 90.4,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 509
+    },
+    {
+      "name": "unigram_16k",
+      "total": 16000,
+      "armenian": 14784,
+      "armenian_pct": 92.4,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 955
+    },
+    {
+      "name": "unigram_32k",
+      "total": 32000,
+      "armenian": 29562,
+      "armenian_pct": 92.4,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 2177
+    },
+    {
+      "name": "bpe_8k",
+      "total": 8000,
+      "armenian": 7178,
+      "armenian_pct": 89.7,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 561
+    },
+    {
+      "name": "bpe_16k",
+      "total": 16000,
+      "armenian": 14685,
+      "armenian_pct": 91.8,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 1054
+    },
+    {
+      "name": "bpe_32k",
+      "total": 32000,
+      "armenian": 29641,
+      "armenian_pct": 92.6,
+      "byte_tokens": 0,
+      "special": 261,
+      "other": 2098
+    }
+  ],
+  "best_model_for_grafting": "bpe_32k",
+  "best_model_path": "models/tokenizers/hy_bpe_32k.model",
+  "ranking": [
+    {
+      "name": "bpe_32k",
+      "score": 0.6441681534772183,
+      "fertility": 1.668,
+      "strr": 0.683,
+      "vocab_size": 32000
+    },
+    {
+      "name": "unigram_32k",
+      "score": 0.6415111687537269,
+      "fertility": 1.677,
+      "strr": 0.6817,
+      "vocab_size": 32000
+    },
+    {
+      "name": "unigram_16k",
+      "score": 0.6133298580010924,
+      "fertility": 1.831,
+      "strr": 0.6199,
+      "vocab_size": 16000
+    },
+    {
+      "name": "bpe_16k",
+      "score": 0.6118980503833517,
+      "fertility": 1.826,
+      "strr": 0.6114,
+      "vocab_size": 16000
+    },
+    {
+      "name": "unigram_8k",
+      "score": 0.5964164209505335,
+      "fertility": 2.062,
+      "strr": 0.5377,
+      "vocab_size": 8000
+    },
+    {
+      "name": "bpe_8k",
+      "score": 0.5915672019464719,
+      "fertility": 2.055,
+      "strr": 0.5176,
+      "vocab_size": 8000
+    }
+  ]
+}

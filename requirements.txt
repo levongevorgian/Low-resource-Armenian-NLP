@@ -1,0 +1,15 @@
+accelerate
+datasets
+huggingface-hub
+ipykernel
+jupyter
+matplotlib
+numpy
+peft
+protobuf
+regex
+sentencepiece
+tabulate
+torch
+tqdm
+transformers

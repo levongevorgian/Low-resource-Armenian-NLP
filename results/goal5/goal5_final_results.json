@@ -1,0 +1,167 @@
+{
+  "project": "Armenian Tokenizer Surgery",
+  "base_model": "Qwen2.5-0.5B",
+  "armenian_tokenizer": "bpe_32k (custom, SentencePiece)",
+  "goal1_fertility_analysis": [
+    {
+      "name": "XLM-R-base",
+      "type": "Unigram (SP)",
+      "vocab": 250002,
+      "hy_tokens": 3528,
+      "fertility": 2.18,
+      "strr": 0.45,
+      "hy_en": 1.62
+    },
+    {
+      "name": "mT5-small",
+      "type": "Unigram (SP)",
+      "vocab": 250100,
+      "hy_tokens": 2274,
+      "fertility": 2.85,
+      "strr": 0.117,
+      "hy_en": 1.91
+    },
+    {
+      "name": "Gemma-2-2B",
+      "type": "BPE (SP)",
+      "vocab": 256000,
+      "hy_tokens": 246,
+      "fertility": 4.49,
+      "strr": 0.1,
+      "hy_en": 3.55
+    },
+    {
+      "name": "Qwen2.5-0.5B",
+      "type": "BPE",
+      "vocab": 151665,
+      "hy_tokens": 0,
+      "fertility": 7.83,
+      "strr": 0.059,
+      "hy_en": 6.07
+    },
+    {
+      "name": "LLaMA-2-7B",
+      "type": "BPE (SP)",
+      "vocab": 32000,
+      "hy_tokens": 29,
+      "fertility": 8.53,
+      "strr": 0.004,
+      "hy_en": 5.8
+    },
+    {
+      "name": "Mistral-v0.3",
+      "type": "BPE (SP)",
+      "vocab": 32768,
+      "hy_tokens": 28,
+      "fertility": 8.57,
+      "strr": 0.004,
+      "hy_en": 5.96
+    },
+    {
+      "name": "mGPT-Armenian",
+      "type": "BPE (SP)",
+      "vocab": 100000,
+      "hy_tokens": 0,
+      "fertility": 12.43,
+      "strr": 0.003,
+      "hy_en": 9.84
+    },
+    {
+      "name": "LLaMA-3-8B",
+      "type": "BPE (tiktoken)",
+      "vocab": 128256,
+      "hy_tokens": 0,
+      "fertility": 12.46,
+      "strr": 0.005,
+      "hy_en": 9.92
+    },
+    {
+      "name": "GPT-2",
+      "type": "BPE",
+      "vocab": 50257,
+      "hy_tokens": 0,
+      "fertility": 14.26,
+      "strr": 0.004,
+      "hy_en": 11.2
+    }
+  ],
+  "goal2_custom_tokenizers": [
+    {
+      "name": "bpe_32k (ours)",
+      "fertility": 1.67,
+      "strr": 0.683,
+      "severe_pct": 2.5
+    },
+    {
+      "name": "unigram_32k (ours)",
+      "fertility": 1.68,
+      "strr": 0.682,
+      "severe_pct": 2.7
+    },
+    {
+      "name": "bpe_16k (ours)",
+      "fertility": 1.83,
+      "strr": 0.611,
+      "severe_pct": 3.5
+    },
+    {
+      "name": "unigram_16k (ours)",
+      "fertility": 1.83,
+      "strr": 0.62,
+      "severe_pct": 3.9
+    },
+    {
+      "name": "bpe_8k (ours)",
+      "fertility": 2.06,
+      "strr": 0.518,
+      "severe_pct": 5.2
+    },
+    {
+      "name": "unigram_8k (ours)",
+      "fertility": 2.06,
+      "strr": 0.538,
+      "severe_pct": 6.0
+    }
+  ],
+  "goal3_grafting": {
+    "original_qwen_fertility": 7.83,
+    "grafted_fertility": 1.69,
+    "vocab_original": 151665,
+    "vocab_extended": 182431,
+    "new_tokens": 30766,
+    "pre_ft_ppl": {
+      "heuristic_init": 24484.3,
+      "nearest_init": 96967.5,
+      "mean_init": 216406.1
+    }
+  },
+  "goal4_finetuning": {
+    "heuristic_init": {
+      "pre_ppl": 24484.3,
+      "post_ppl": 8.33,
+      "eval_loss": 2.1198,
+      "train_loss": 2.5141,
+      "time_min": 277.0,
+      "steps": 2425
+    },
+    "nearest_init": {
+      "pre_ppl": 96967.5,
+      "post_ppl": 8.96,
+      "eval_loss": 2.1927,
+      "train_loss": 2.284,
+      "time_min": 50.6,
+      "steps": 2424
+    },
+    "mean_init": {
+      "pre_ppl": 216406.1,
+      "post_ppl": 10.09,
+      "eval_loss": 2.3117,
+      "train_loss": 2.772,
+      "time_min": 28.5,
+      "steps": 2425
+    }
+  },
+  "english_preservation": {
+    "heuristic_init": 19.888185783391915
+  }
+}

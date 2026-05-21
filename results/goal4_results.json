@@ -1,0 +1,54 @@
+{
+  "training_config": {
+    "corpus": "hy_clean.txt",
+    "train_lines": 500000,
+    "max_seq_len": 512,
+    "batch_size": 4,
+    "grad_accum": 8,
+    "effective_batch": 32,
+    "epochs": 1,
+    "learning_rate": 0.0002,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ]
+  },
+  "pre_finetuning_ppl": {
+    "mean_init": 216406.1,
+    "heuristic_init": 24484.3,
+    "nearest_init": 96967.5
+  },
+  "results": {
+    "heuristic_init": {
+      "eval_ppl": 8.33,
+      "eval_loss": 2.1198,
+      "train_loss": 2.5141,
+      "train_time_min": 277.0,
+      "train_steps": 2425,
+      "hardware": "Google Colab T4 (free)",
+      "note": "complete"
+    },
+    "mean_init": {
+      "eval_ppl": 10.09,
+      "eval_loss": 2.3117,
+      "train_loss": 2.772,
+      "train_time_min": 28.5,
+      "train_steps": 2425,
+      "hardware": "Vast.ai H100",
+      "note": "complete"
+    },
+    "nearest_init": {
+      "eval_ppl": 9.54,
+      "eval_loss": 2.254928,
+      "train_loss": 2.348,
+      "train_time_min": 17.1,
+      "train_steps": 1500,
+      "hardware": "Vast.ai H100",
+      "note": "Partial \u2014 disk full at step 1500/2425 (62%)"
+    }
+  }
+}

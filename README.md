@@ -1,5 +1,7 @@
 # Low-Resource Armenian NLP: Tokenization Surgery and Lightweight Adaptation
 
+![Project Preview](figures/custom_tokenizers.png)
+
 A research-oriented NLP project focused on improving Armenian tokenization efficiency through tokenizer analysis, Armenian-specific tokenizer training, vocabulary grafting, and lightweight LoRA adaptation.
 
 ---

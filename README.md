@@ -1,16 +1,28 @@
 # Low-Resource Armenian NLP: Tokenization Surgery and Lightweight Adaptation
 
-This repository contains the final code, notebooks, model artifacts, figures, results, and report for an NLP course project on improving Armenian tokenization efficiency through tokenizer analysis, Armenian-specific tokenizer training, vocabulary grafting, and lightweight LoRA adaptation.
+A research-oriented NLP project focused on improving Armenian tokenization efficiency by analyzing existing tokenizers, training Armenian-specific SentencePiece tokenizers, grafting the best tokenizer into a Qwen2.5-0.5B workflow, and evaluating recovery through lightweight LoRA adaptation.
 
 ## Project Overview
 
-Many general-purpose language models tokenize Armenian inefficiently because their vocabularies contain few Armenian-specific subword units. This project studies that issue empirically, trains Armenian-focused SentencePiece tokenizers, grafts a custom tokenizer into a Qwen2.5-0.5B workflow, and evaluates recovery with parameter-efficient fine-tuning.
+Many general-purpose language models tokenize Armenian inefficiently because their vocabularies contain few Armenian-specific subword units. This project studies that issue empirically and tests whether tokenizer surgery can reduce word fragmentation while preserving useful language-model behavior after adaptation.
 
-The repository is organized around the five project goals. Large intermediate corpora, full base-model checkpoints, temporary training checkpoints, caches, screenshots, duplicate working folders, and LaTeX build artifacts are intentionally excluded.
+The repository is organized around five project goals: tokenizer fertility analysis, Armenian tokenizer training, vocabulary grafting, LoRA recovery fine-tuning, and final evaluation.
+
+## Quick Links
+
+- [`Final Report`](report.pdf)
+- [`Figures`](figures/)
+- [`Results`](results/)
+- [`Sample Data`](data/sample/)
+- [`Goal 1: Tokenizer Fertility`](goal_1_tokenizer_fertility/)
+- [`Goal 2: Tokenizer Surgery`](goal_2_tokenizer_surgery/)
+- [`Goal 3: Lightweight Adaptation`](goal_3_lightweight_adaptation/)
+- [`Goal 4: LoRA Evaluation`](goal_4_evaluation/)
+- [`Goal 5: Final Analysis`](goal_5_generation_or_analysis/)
 
 ## Motivation
 
-Tokenizer fertility affects sequence length, compute cost, and the amount of text a model can process within a fixed context window. For Armenian, weak tokenizer coverage can cause severe word fragmentation. The project tests whether tokenizer surgery can reduce that fragmentation and whether lightweight adaptation can recover useful language-model likelihood after adding Armenian-oriented tokens.
+Tokenizer fertility affects sequence length, compute cost, and the amount of text a model can process within a fixed context window. For Armenian, weak tokenizer coverage can cause severe word fragmentation. This project investigates whether Armenian-focused tokenization and lightweight adaptation can reduce fragmentation and recover useful model likelihood.
 
 ## Research Goals
 
@@ -22,36 +34,33 @@ Tokenizer fertility affects sequence length, compute cost, and the amount of tex
 
 ## Repository Structure
 
-```text
-.
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── report.pdf
-├── data/sample/                       # Small Armenian evaluation sample
-├── docs/                              # Handoff notes, setup notes, and goal mapping
-├── figures/                           # Final figures used for reporting and analysis
-├── goal_1_tokenizer_fertility/        # Fertility analysis script and Goal 1 notes/results
-├── goal_2_tokenizer_surgery/          # Tokenizer training and evaluation notebooks
-├── goal_3_lightweight_adaptation/     # Tokenizer grafting / initialization notebooks
-├── goal_4_evaluation/                 # LoRA fine-tuning and evaluation notebooks
-├── goal_5_generation_or_analysis/     # Final synthesis/evaluation notebook
-├── models/grafted_tokenizers/         # Tokenizer/config artifacts from grafting experiments
-├── models/lora_adapters/              # Compact LoRA adapter artifacts
-├── models/tokenizers/                 # Trained Armenian tokenizer model/vocab files
-├── results/                           # JSON outputs grouped by goal
-└── scripts/                           # Supporting utility scripts
-```
+| Folder / File | Description |
+|---|---|
+| [`data/sample/`](data/sample/) | Small Armenian evaluation sample used for lightweight reproduction |
+| [`docs/`](docs/) | Handoff notes, setup notes, and goal mapping |
+| [`figures/`](figures/) | Final visualization assets used in the report and analysis |
+| [`goal_1_tokenizer_fertility/`](goal_1_tokenizer_fertility/) | Baseline tokenizer fertility analysis |
+| [`goal_2_tokenizer_surgery/`](goal_2_tokenizer_surgery/) | Armenian SentencePiece tokenizer training and evaluation |
+| [`goal_3_lightweight_adaptation/`](goal_3_lightweight_adaptation/) | Vocabulary grafting and embedding initialization experiments |
+| [`goal_4_evaluation/`](goal_4_evaluation/) | LoRA fine-tuning and perplexity/loss evaluation |
+| [`goal_5_generation_or_analysis/`](goal_5_generation_or_analysis/) | Final synthesis, diagnostics, and evaluation notebook |
+| [`models/grafted_tokenizers/`](models/grafted_tokenizers/) | Tokenizer/config artifacts from grafting experiments |
+| [`models/lora_adapters/`](models/lora_adapters/) | Compact LoRA adapter artifacts |
+| [`models/tokenizers/`](models/tokenizers/) | Trained Armenian tokenizer model and vocabulary files |
+| [`results/`](results/) | JSON outputs grouped by goal |
+| [`scripts/`](scripts/) | Supporting utility scripts |
+| [`report.pdf`](report.pdf) | Final project report |
+| [`requirements.txt`](requirements.txt) | Python package requirements |
 
 ## Goal 1: Tokenizer Fertility
 
-Goal 1 measures Armenian tokenization efficiency for existing tokenizers. The main script computes fertility, bytes per token, single-token word retention, severe fragmentation, and Armenian vocabulary coverage.
+Goal 1 measures Armenian tokenization efficiency for existing tokenizers. The analysis computes fertility, bytes per token, single-token word retention, severe fragmentation, and Armenian vocabulary coverage.
 
 Main files:
 
-- `goal_1_tokenizer_fertility/fertility_analysis.py`
-- `goal_1_tokenizer_fertility/fertility_results.json`
-- `results/goal1/fertility_results.json`
+- [`fertility_analysis.py`](goal_1_tokenizer_fertility/fertility_analysis.py)
+- [`fertility_results.json`](goal_1_tokenizer_fertility/fertility_results.json)
+- [`results/goal1/fertility_results.json`](results/goal1/fertility_results.json)
 
 ## Goal 2: Tokenizer Surgery
 
@@ -59,10 +68,10 @@ Goal 2 trains Armenian-specific SentencePiece tokenizers at 8k, 16k, and 32k voc
 
 Main files:
 
-- `goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb`
-- `goal_2_tokenizer_surgery/goal2_eval_only.ipynb`
-- `models/tokenizers/`
-- `results/goal2/goal2_eval_results.json`
+- [`goal2_train_tokenizers.ipynb`](goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb)
+- [`goal2_eval_only.ipynb`](goal_2_tokenizer_surgery/goal2_eval_only.ipynb)
+- [`models/tokenizers/`](models/tokenizers/)
+- [`results/goal2/goal2_eval_results.json`](results/goal2/goal2_eval_results.json)
 
 ## Goal 3: Tokenizer Grafting and Initialization
 
@@ -70,33 +79,33 @@ Goal 3 explores vocabulary grafting and embedding initialization strategies: mea
 
 Main files:
 
-- `goal_3_lightweight_adaptation/goal3_grafting.ipynb`
-- `goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb`
-- `models/grafted_tokenizers/`
-- `results/goal3/goal3_results.json`
+- [`goal3_grafting.ipynb`](goal_3_lightweight_adaptation/goal3_grafting.ipynb)
+- [`goal3_grafting_with_results.ipynb`](goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb)
+- [`models/grafted_tokenizers/`](models/grafted_tokenizers/)
+- [`results/goal3/goal3_results.json`](results/goal3/goal3_results.json)
 
 ## Goal 4: Evaluation and LoRA Fine-Tuning
 
-Goal 4 runs parameter-efficient adaptation experiments and compares post-fine-tuning perplexity and loss across initialization strategies. Compact LoRA adapter artifacts are included; repeated trainer checkpoints are excluded.
+Goal 4 runs parameter-efficient adaptation experiments and compares post-fine-tuning perplexity and loss across initialization strategies. Compact LoRA adapter artifacts are included, while repeated trainer checkpoints are excluded.
 
 Main files:
 
-- `goal_4_evaluation/goal4_lora_finetuning_h100.ipynb`
-- `goal_4_evaluation/goal4_lora_finetuning_heuristic_colab.ipynb`
-- `goal_4_evaluation/goal4_lora_finetuning_nearest_init_rtx_pro_6000.ipynb`
-- `models/lora_adapters/`
-- `results/goal4/goal4_results.json`
-- `results/goal4/goal4_global_benchmarks.json`
+- [`goal4_lora_finetuning_h100.ipynb`](goal_4_evaluation/goal4_lora_finetuning_h100.ipynb)
+- [`goal4_lora_finetuning_heuristic_colab.ipynb`](goal_4_evaluation/goal4_lora_finetuning_heuristic_colab.ipynb)
+- [`goal4_lora_finetuning_nearest_init_rtx_pro_6000.ipynb`](goal_4_evaluation/goal4_lora_finetuning_nearest_init_rtx_pro_6000.ipynb)
+- [`models/lora_adapters/`](models/lora_adapters/)
+- [`results/goal4/goal4_results.json`](results/goal4/goal4_results.json)
+- [`results/goal4/goal4_global_benchmarks.json`](results/goal4/goal4_global_benchmarks.json)
 
 ## Goal 5: Final Analysis
 
-Goal 5 consolidates the earlier stages into final tables, figures, and diagnostics. It summarizes the fertility, tokenizer, grafting, adaptation, and qualitative generation results.
+Goal 5 consolidates the earlier stages into final tables, figures, and diagnostics. It summarizes fertility, tokenizer training, grafting, adaptation, and qualitative generation results.
 
 Main files:
 
-- `goal_5_generation_or_analysis/goal5_evaluation.ipynb`
-- `results/goal5/goal5_final_results.json`
-- `figures/`
+- [`goal5_evaluation.ipynb`](goal_5_generation_or_analysis/goal5_evaluation.ipynb)
+- [`results/goal5/goal5_final_results.json`](results/goal5/goal5_final_results.json)
+- [`figures/`](figures/)
 
 ## Setup
 
@@ -108,7 +117,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Some notebooks load Hugging Face models that may require authentication or license access. Run `huggingface-cli login` if a gated model cannot be downloaded.
+Some notebooks load Hugging Face models that may require authentication or license access. Run:
+
+```bash
+huggingface-cli login
+```
+
+if a gated model cannot be downloaded.
 
 ## Reproducing the Main Steps
 
@@ -134,25 +149,25 @@ Exact end-to-end reproduction requires the full cleaned Armenian corpus `hy_clea
 
 ## Main Outputs
 
-- Goal 1 baseline fertility metrics: `results/goal1/fertility_results.json`
-- Goal 2 custom tokenizer evaluation: `results/goal2/goal2_eval_results.json`
-- Goal 3 grafting metrics: `results/goal3/goal3_results.json`
-- Goal 4 LoRA benchmark metrics: `results/goal4/`
-- Goal 5 consolidated results: `results/goal5/goal5_final_results.json`
-- Final figures: `figures/`
-- Final report: `report.pdf`
+| Output | Path |
+|---|---|
+| Baseline tokenizer fertility metrics | [`results/goal1/fertility_results.json`](results/goal1/fertility_results.json) |
+| Custom tokenizer evaluation | [`results/goal2/goal2_eval_results.json`](results/goal2/goal2_eval_results.json) |
+| Grafting metrics | [`results/goal3/goal3_results.json`](results/goal3/goal3_results.json) |
+| LoRA benchmark metrics | [`results/goal4/`](results/goal4/) |
+| Final consolidated results | [`results/goal5/goal5_final_results.json`](results/goal5/goal5_final_results.json) |
+| Final figures | [`figures/`](figures/) |
+| Final report | [`report.pdf`](report.pdf) |
 
 ## Figures
 
-The `figures/` directory contains the final visualization assets used for analysis and reporting, including baseline fertility/compression plots, custom tokenizer comparisons, grafting efficiency, perplexity recovery, adaptation curves, and final Goal 5 summaries.
+The [`figures/`](figures/) directory contains the final visualization assets used for analysis and reporting, including baseline fertility/compression plots, custom tokenizer comparisons, grafting efficiency, perplexity recovery, adaptation curves, and final Goal 5 summaries.
 
 ## Report
 
-The final report is stored at the repository root:
+The final report is available here:
 
-```text
-report.pdf
-```
+[`Low-Resource Armenian NLP Report`](report.pdf)
 
 ## Team and Collaboration Note
 

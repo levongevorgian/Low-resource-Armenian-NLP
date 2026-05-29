@@ -1,115 +1,119 @@
 # Low-Resource Armenian NLP: Tokenization Surgery and Lightweight Adaptation
 
-A research-oriented NLP project focused on improving Armenian tokenization efficiency by analyzing existing tokenizers, training Armenian-specific SentencePiece tokenizers, grafting the best tokenizer into a Qwen2.5-0.5B workflow, and evaluating recovery through lightweight LoRA adaptation.
+![Project Preview](preview.png)
+
+A research-oriented NLP project focused on improving Armenian tokenization efficiency through tokenizer analysis, Armenian-specific tokenizer training, vocabulary grafting, and lightweight LoRA adaptation.
+
+---
 
 ## Project Overview
 
-Many general-purpose language models tokenize Armenian inefficiently because their vocabularies contain few Armenian-specific subword units. This project studies that issue empirically and tests whether tokenizer surgery can reduce word fragmentation while preserving useful language-model behavior after adaptation.
+Many general-purpose language models tokenize Armenian inefficiently because their vocabularies contain few Armenian-specific subword units. This project studies that issue empirically, trains Armenian-focused SentencePiece tokenizers, grafts a custom tokenizer into a Qwen2.5-0.5B workflow, and evaluates recovery through parameter-efficient fine-tuning.
 
-The repository is organized around five project goals: tokenizer fertility analysis, Armenian tokenizer training, vocabulary grafting, LoRA recovery fine-tuning, and final evaluation.
+The repository is organized around five major research goals:
 
-## Quick Links
+* Tokenizer fertility analysis
+* Armenian tokenizer training
+* Vocabulary grafting
+* LoRA recovery fine-tuning
+* Final evaluation and generation diagnostics
 
-- [`Final Report`](report.pdf)
-- [`Figures`](figures/)
-- [`Results`](results/)
-- [`Sample Data`](data/sample/)
-- [`Goal 1: Tokenizer Fertility`](goal_1_tokenizer_fertility/)
-- [`Goal 2: Tokenizer Surgery`](goal_2_tokenizer_surgery/)
-- [`Goal 3: Lightweight Adaptation`](goal_3_lightweight_adaptation/)
-- [`Goal 4: LoRA Evaluation`](goal_4_evaluation/)
-- [`Goal 5: Final Analysis`](goal_5_generation_or_analysis/)
+---
 
-## Motivation
+# Quick Links
 
-Tokenizer fertility affects sequence length, compute cost, and the amount of text a model can process within a fixed context window. For Armenian, weak tokenizer coverage can cause severe word fragmentation. This project investigates whether Armenian-focused tokenization and lightweight adaptation can reduce fragmentation and recover useful model likelihood.
+| Resource     | Link                                   |
+| ------------ | -------------------------------------- |
+| Final Report | [`report.pdf`](report.pdf)             |
+| Figures      | [`figures/`](figures/)                 |
+| Results      | [`results/`](results/)                 |
+| Sample Data  | [`data/sample/`](data/sample/)         |
+| Requirements | [`requirements.txt`](requirements.txt) |
 
-## Research Goals
+---
 
-1. Measure Armenian tokenizer fertility and fragmentation across existing tokenizers.
-2. Train and evaluate Armenian-specific BPE and Unigram tokenizers.
-3. Graft the best Armenian tokenizer into a base-model workflow and compare embedding initialization strategies.
-4. Run LoRA recovery fine-tuning and evaluate perplexity/loss across initialization strategies.
-5. Consolidate final analysis, generation diagnostics, preservation checks, and figures.
+# Research Goals
 
-## Repository Structure
+## Goal 1 — Tokenizer Fertility
 
-| Folder / File | Description |
-|---|---|
-| [`data/sample/`](data/sample/) | Small Armenian evaluation sample used for lightweight reproduction |
-| [`docs/`](docs/) | Handoff notes, setup notes, and goal mapping |
-| [`figures/`](figures/) | Final visualization assets used in the report and analysis |
-| [`goal_1_tokenizer_fertility/`](goal_1_tokenizer_fertility/) | Baseline tokenizer fertility analysis |
-| [`goal_2_tokenizer_surgery/`](goal_2_tokenizer_surgery/) | Armenian SentencePiece tokenizer training and evaluation |
-| [`goal_3_lightweight_adaptation/`](goal_3_lightweight_adaptation/) | Vocabulary grafting and embedding initialization experiments |
-| [`goal_4_evaluation/`](goal_4_evaluation/) | LoRA fine-tuning and perplexity/loss evaluation |
-| [`goal_5_generation_or_analysis/`](goal_5_generation_or_analysis/) | Final synthesis, diagnostics, and evaluation notebook |
-| [`models/grafted_tokenizers/`](models/grafted_tokenizers/) | Tokenizer/config artifacts from grafting experiments |
-| [`models/lora_adapters/`](models/lora_adapters/) | Compact LoRA adapter artifacts |
-| [`models/tokenizers/`](models/tokenizers/) | Trained Armenian tokenizer model and vocabulary files |
-| [`results/`](results/) | JSON outputs grouped by goal |
-| [`scripts/`](scripts/) | Supporting utility scripts |
-| [`report.pdf`](report.pdf) | Final project report |
-| [`requirements.txt`](requirements.txt) | Python package requirements |
+Measure Armenian tokenizer fertility and fragmentation across existing tokenizers.
 
-## Goal 1: Tokenizer Fertility
+### Main Files
 
-Goal 1 measures Armenian tokenization efficiency for existing tokenizers. The analysis computes fertility, bytes per token, single-token word retention, severe fragmentation, and Armenian vocabulary coverage.
+* [`goal_1_tokenizer_fertility/fertility_analysis.py`](goal_1_tokenizer_fertility/fertility_analysis.py)
+* [`results/goal1/fertility_results.json`](results/goal1/fertility_results.json)
 
-Main files:
+---
 
-- [`fertility_analysis.py`](goal_1_tokenizer_fertility/fertility_analysis.py)
-- [`fertility_results.json`](goal_1_tokenizer_fertility/fertility_results.json)
-- [`results/goal1/fertility_results.json`](results/goal1/fertility_results.json)
+## Goal 2 — Tokenizer Surgery
 
-## Goal 2: Tokenizer Surgery
+Train Armenian-specific BPE and Unigram SentencePiece tokenizers at multiple vocabulary sizes.
 
-Goal 2 trains Armenian-specific SentencePiece tokenizers at 8k, 16k, and 32k vocabulary sizes and compares BPE and Unigram variants against baseline tokenizers.
+### Main Files
 
-Main files:
+* [`goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb`](goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb)
+* [`goal_2_tokenizer_surgery/goal2_eval_only.ipynb`](goal_2_tokenizer_surgery/goal2_eval_only.ipynb)
+* [`results/goal2/goal2_eval_results.json`](results/goal2/goal2_eval_results.json)
 
-- [`goal2_train_tokenizers.ipynb`](goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb)
-- [`goal2_eval_only.ipynb`](goal_2_tokenizer_surgery/goal2_eval_only.ipynb)
-- [`models/tokenizers/`](models/tokenizers/)
-- [`results/goal2/goal2_eval_results.json`](results/goal2/goal2_eval_results.json)
+---
 
-## Goal 3: Tokenizer Grafting and Initialization
+## Goal 3 — Lightweight Adaptation
 
-Goal 3 explores vocabulary grafting and embedding initialization strategies: mean initialization, heuristic/FOCUS-style initialization, and nearest-token initialization. Full base-model weight files are not included because they are too large for a normal GitHub repository.
+Explore vocabulary grafting and embedding initialization strategies for integrating Armenian tokens into Qwen2.5-0.5B.
 
-Main files:
+### Main Files
 
-- [`goal3_grafting.ipynb`](goal_3_lightweight_adaptation/goal3_grafting.ipynb)
-- [`goal3_grafting_with_results.ipynb`](goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb)
-- [`models/grafted_tokenizers/`](models/grafted_tokenizers/)
-- [`results/goal3/goal3_results.json`](results/goal3/goal3_results.json)
+* [`goal_3_lightweight_adaptation/goal3_grafting.ipynb`](goal_3_lightweight_adaptation/goal3_grafting.ipynb)
+* [`goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb`](goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb)
+* [`results/goal3/goal3_results.json`](results/goal3/goal3_results.json)
 
-## Goal 4: Evaluation and LoRA Fine-Tuning
+---
 
-Goal 4 runs parameter-efficient adaptation experiments and compares post-fine-tuning perplexity and loss across initialization strategies. Compact LoRA adapter artifacts are included, while repeated trainer checkpoints are excluded.
+## Goal 4 — LoRA Recovery Fine-Tuning
 
-Main files:
+Run parameter-efficient adaptation experiments and compare post-fine-tuning perplexity across initialization strategies.
 
-- [`goal4_lora_finetuning_h100.ipynb`](goal_4_evaluation/goal4_lora_finetuning_h100.ipynb)
-- [`goal4_lora_finetuning_heuristic_colab.ipynb`](goal_4_evaluation/goal4_lora_finetuning_heuristic_colab.ipynb)
-- [`goal4_lora_finetuning_nearest_init_rtx_pro_6000.ipynb`](goal_4_evaluation/goal4_lora_finetuning_nearest_init_rtx_pro_6000.ipynb)
-- [`models/lora_adapters/`](models/lora_adapters/)
-- [`results/goal4/goal4_results.json`](results/goal4/goal4_results.json)
-- [`results/goal4/goal4_global_benchmarks.json`](results/goal4/goal4_global_benchmarks.json)
+### Main Files
 
-## Goal 5: Final Analysis
+* [`goal_4_evaluation/goal4_lora_finetuning_h100.ipynb`](goal_4_evaluation/goal4_lora_finetuning_h100.ipynb)
+* [`goal_4_evaluation/goal4_lora_finetuning_heuristic_colab.ipynb`](goal_4_evaluation/goal4_lora_finetuning_heuristic_colab.ipynb)
+* [`results/goal4/`](results/goal4/)
 
-Goal 5 consolidates the earlier stages into final tables, figures, and diagnostics. It summarizes fertility, tokenizer training, grafting, adaptation, and qualitative generation results.
+---
 
-Main files:
+## Goal 5 — Final Analysis
 
-- [`goal5_evaluation.ipynb`](goal_5_generation_or_analysis/goal5_evaluation.ipynb)
-- [`results/goal5/goal5_final_results.json`](results/goal5/goal5_final_results.json)
-- [`figures/`](figures/)
+Consolidate final tables, figures, diagnostics, and qualitative generation results.
 
-## Setup
+### Main Files
 
-Use Python 3.10 or newer. A GPU is recommended for model grafting and LoRA fine-tuning notebooks, but the fertility analysis script and result inspection can run on CPU.
+* [`goal_5_generation_or_analysis/goal5_evaluation.ipynb`](goal_5_generation_or_analysis/goal5_evaluation.ipynb)
+* [`results/goal5/goal5_final_results.json`](results/goal5/goal5_final_results.json)
+* [`figures/`](figures/)
+
+---
+
+# Repository Structure
+
+| Folder                           | Description                    |
+| -------------------------------- | ------------------------------ |
+| `data/sample/`                   | Armenian evaluation samples    |
+| `docs/`                          | Notes and documentation        |
+| `figures/`                       | Final visualizations and plots |
+| `goal_1_tokenizer_fertility/`    | Fertility analysis             |
+| `goal_2_tokenizer_surgery/`      | Tokenizer training             |
+| `goal_3_lightweight_adaptation/` | Vocabulary grafting            |
+| `goal_4_evaluation/`             | LoRA adaptation                |
+| `goal_5_generation_or_analysis/` | Final evaluation               |
+| `models/`                        | Tokenizers and LoRA adapters   |
+| `results/`                       | JSON outputs and metrics       |
+| `scripts/`                       | Utility scripts                |
+
+---
+
+# Setup
+
+Use Python 3.10 or newer.
 
 ```bash
 python -m venv .venv
@@ -117,17 +121,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Some notebooks load Hugging Face models that may require authentication or license access. Run:
+Some notebooks require Hugging Face authentication:
 
 ```bash
 huggingface-cli login
 ```
 
-if a gated model cannot be downloaded.
+---
 
-## Reproducing the Main Steps
+# Running the Project
 
-Run the project in goal order. Goal 1 can be run directly on the included sample:
+Example Goal 1 reproduction:
 
 ```bash
 python goal_1_tokenizer_fertility/fertility_analysis.py \
@@ -135,44 +139,50 @@ python goal_1_tokenizer_fertility/fertility_analysis.py \
   --output results/goal1/fertility_results.json
 ```
 
-Then open and run the notebooks as needed:
+Then run the notebooks in goal order.
 
-```text
-goal_2_tokenizer_surgery/goal2_train_tokenizers.ipynb
-goal_2_tokenizer_surgery/goal2_eval_only.ipynb
-goal_3_lightweight_adaptation/goal3_grafting_with_results.ipynb
-goal_4_evaluation/goal4_lora_finetuning_h100.ipynb
-goal_5_generation_or_analysis/goal5_evaluation.ipynb
-```
+---
 
-Exact end-to-end reproduction requires the full cleaned Armenian corpus `hy_clean.txt`, which is not included because of size. Several notebooks were originally run across local, Colab, H100, and RTX environments, so hardware-specific path cells may need small adjustments before rerunning.
+# Main Outputs
 
-## Main Outputs
+| Output                     | Location         |
+| -------------------------- | ---------------- |
+| Baseline fertility metrics | `results/goal1/` |
+| Tokenizer evaluation       | `results/goal2/` |
+| Grafting metrics           | `results/goal3/` |
+| LoRA benchmarks            | `results/goal4/` |
+| Final evaluation           | `results/goal5/` |
+| Final report               | `report.pdf`     |
 
-| Output | Path |
-|---|---|
-| Baseline tokenizer fertility metrics | [`results/goal1/fertility_results.json`](results/goal1/fertility_results.json) |
-| Custom tokenizer evaluation | [`results/goal2/goal2_eval_results.json`](results/goal2/goal2_eval_results.json) |
-| Grafting metrics | [`results/goal3/goal3_results.json`](results/goal3/goal3_results.json) |
-| LoRA benchmark metrics | [`results/goal4/`](results/goal4/) |
-| Final consolidated results | [`results/goal5/goal5_final_results.json`](results/goal5/goal5_final_results.json) |
-| Final figures | [`figures/`](figures/) |
-| Final report | [`report.pdf`](report.pdf) |
+---
 
-## Figures
+# Figures
 
-The [`figures/`](figures/) directory contains the final visualization assets used for analysis and reporting, including baseline fertility/compression plots, custom tokenizer comparisons, grafting efficiency, perplexity recovery, adaptation curves, and final Goal 5 summaries.
+The `figures/` directory contains:
 
-## Report
+* Fertility comparison plots
+* Tokenizer evaluation figures
+* Grafting efficiency plots
+* Perplexity recovery curves
+* Final summary visualizations
 
-The final report is available here:
+---
 
-[`Low-Resource Armenian NLP Report`](report.pdf)
+# Team
 
-## Team and Collaboration Note
+Collaborative NLP course project focused on low-resource Armenian language modeling and tokenizer adaptation.
 
-This was a collaborative NLP course project. The repository preserves the final code, notebooks, results, figures, compact model artifacts, and report needed for review and public submission while omitting duplicated scratch work and large intermediate files.
+---
 
-## Citation and Acknowledgments
+# Acknowledgments
 
-This project uses open-source NLP tooling including Hugging Face Transformers, PyTorch, SentencePiece, PEFT, Datasets, NumPy, Matplotlib, tqdm, and tabulate. If you reuse this work, please cite the relevant upstream libraries and model providers used in your experiments.
+This project uses:
+
+* Hugging Face Transformers
+* PyTorch
+* SentencePiece
+* PEFT
+* NumPy
+* Matplotlib
+* tqdm
+* tabulate
